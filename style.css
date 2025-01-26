@@ -12,18 +12,17 @@ a, h1, h2, h3, p {
 }
 
 
-header {
-  background: url('assets/clouds.jpg') no-repeat center center;
-  background-size: cover;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  height: 200px; /* Adjust height to fit your design */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 0;
 }
+
 
 
 .product {
