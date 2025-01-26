@@ -1,10 +1,16 @@
 body {
+  background: url('assets/marble-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #39ff14; /* Neon green text */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
 }
+
+a, h1, h2, h3, p {
+  color: #39ff14; /* Neon green for all text */
+}
+
 
 header {
   background: url('assets/clouds.jpg') no-repeat center center;
@@ -34,16 +40,22 @@ header {
 }
 
 button.buy-now {
-  background-color: #0078d7;
-  color: white;
-  padding: 10px 20px;
+  background-color: #39ff14; /* Neon green */
+  color: white; /* White text */
   border: none;
-  border-radius: 5px;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
 }
 
 button.buy-now:hover {
-  background-color: #005bb5;
+  box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 50px #39ff14;
+  transform: scale(1.05); /* Slight zoom effect */
 }
 
 footer {
