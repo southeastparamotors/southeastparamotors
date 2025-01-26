@@ -26,6 +26,12 @@ header {
   padding: 20px;
 }
 
+.header-content {
+  text-align: center;
+  margin-top: 20px; /* Optional: Add spacing */
+}
+
+
 @media (max-width: 768px) {
   header {
     height: 200px; /* Smaller header height for mobile */
