@@ -1,11 +1,12 @@
 body {
-  background: url('assets/marble-bg.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #39ff14; /* Neon green text */
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background: url('assets/marble-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #39ff14;
+  font-family: Arial, sans-serif;
 }
+
 
 a, h1, h2, h3, p {
   color: #39ff14; /* Neon green for all text */
