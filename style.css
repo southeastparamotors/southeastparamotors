@@ -7,11 +7,18 @@ body {
 }
 
 header {
-  background-color: #0078d7;
+  background: url('assets/clouds.jpg') no-repeat center center;
+  background-size: cover;
   color: white;
   padding: 20px;
   text-align: center;
+  height: 200px; /* Adjust height to fit your design */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .product {
   padding: 20px;
