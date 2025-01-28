@@ -1,44 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Southeast Paramotors</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramotor LED Kit</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+        }
+        .paramotor-button {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at center, #333, #111);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px #0f0;
+            cursor: pointer;
+            animation: glow 1.5s infinite;
+        }
+
+        .paramotor-button:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s;
+        }
+
+        .propeller {
+            position: absolute;
+            width: 100px;
+            height: 10px;
+            background-color: #0f0;
+            border-radius: 5px;
+            animation: spin 1s linear infinite;
+        }
+
+        .hoop {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 2px solid #0f0;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .text {
+            color: #fff;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 15px #0f0;
+            }
+            50% {
+                box-shadow: 0 0 25px #0f0;
+            }
+        }
+    </style>
 </head>
 <body>
-
- <!-- Top Marble Section -->
-  <div class="marble-section">
-    <div class="marble-content">
-      <h1>Welcome to Southeast Paramotors</h1>
-      <p>Paramotor equipment at an affordable price</p>
+    <div class="paramotor-button" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=199.00&currency_code=USD';">
+        <div class="hoop"></div>
+        <div class="propeller"></div>
+        <div class="text">BUY NOW</div>
     </div>
-  </div>
-
-  <!-- Center Black Section -->
-  <div class="center-section">
-    <p>Pictures coming soon!</p>
-  </div>
-
-  <!-- Product Section -->
-  <section class="product">
-    <h2>Paramotor LED Light Kit</h2>
-    <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit">
-    <p>Enhance your flights with stunning LED effects. Easy to install and durable. Perfect for night flights!</p>
-    <p><strong>Price:</strong> $199</p>
-    <button class="buy-now">BUY NOW</button>
-  </section>
-
-  <!-- Bottom Marble Section -->
-  <div class="marble-section">
-    <p>Thank you for visiting!</p>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>Contact us: <a href="mailto:support@southeastparamotors.com">support@southeastparamotors.com</a></p>
-  </footer>
-
 </body>
 </html>
