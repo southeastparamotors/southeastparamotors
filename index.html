@@ -53,10 +53,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 15px #0f0;
       margin: 20px auto;
       cursor: pointer;
-      animation: glow 1.5s infinite;
+      animation: glow 4s infinite;
     }
 
     .paramotor-button:hover {
@@ -80,7 +79,7 @@
       border: 6px solid;
       border-radius: 50%;
       z-index: 0;
-      animation: color-change 3s infinite;
+      animation: color-change 4s infinite;
     }
 
     .text {
@@ -89,6 +88,39 @@
       font-family: Arial, sans-serif;
       text-align: center;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .text span {
+      display: block;
+      line-height: 1.2;
+    }
+
+    /* Color and Glow Animation */
+    @keyframes color-change {
+      0% {
+        border-color: red;
+        box-shadow: 0 0 15px red;
+      }
+      25% {
+        border-color: green;
+        box-shadow: 0 0 15px green;
+      }
+      50% {
+        border-color: blue;
+        box-shadow: 0 0 15px blue;
+      }
+      75% {
+        border-color: white;
+        box-shadow: 0 0 15px white;
+      }
+      100% {
+        border-color: red;
+        box-shadow: 0 0 15px red;
+      }
     }
 
     @keyframes spin {
@@ -100,29 +132,6 @@
       }
     }
 
-    @keyframes glow {
-      0%, 100% {
-        box-shadow: 0 0 15px #0f0;
-      }
-      50% {
-        box-shadow: 0 0 25px #0f0;
-      }
-    }
-
-    @keyframes color-change {
-      0% {
-        border-color: red;
-      }
-      33% {
-        border-color: green;
-      }
-      66% {
-        border-color: blue;
-      }
-      100% {
-        border-color: red;
-      }
-    }
   </style>
 </head>
 <body>
@@ -149,7 +158,10 @@
     <div class="paramotor-button" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=199.00&currency_code=USD';">
       <div class="hoop"></div>
       <div class="propeller"></div>
-      <div class="text">BUY NOW</div>
+      <div class="text">
+        <span style="font-size: 16px; font-weight: bold;">Click Here</span>
+        <span style="font-size: 14px;">Buy Now</span>
+      </div>
     </div>
   </section>
 
