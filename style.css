@@ -18,14 +18,16 @@ body {
 
 
 .marble-section {
-  background: url('assets/marble-bg.jpg') no-repeat center center;
-  background-size: cover;
-  height: 300px; /* Adjust as needed */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  background: url('assets/marble-bg.jpg') no-repeat center center !important;
+  background-size: cover !important;
+  height: 300px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  border: 5px solid blue; /* Change border color to BLUE for debugging */
 }
+
 
 .marble-content {
   color: #39ff14; /* Neon green text */
