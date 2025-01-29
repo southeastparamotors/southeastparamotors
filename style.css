@@ -25,8 +25,8 @@ body {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  border: 5px solid blue; /* Change border color to BLUE for debugging */
 }
+
 
 
 .marble-content {
