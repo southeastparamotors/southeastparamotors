@@ -6,6 +6,43 @@
   <title>Southeast Paramotors</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Marble Section */
+    .marble-section {
+      background: linear-gradient(45deg, #444, #333);
+      padding: 20px;
+    }
+
+    .marble-content h1, .marble-content p {
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    /* Center Section */
+    .center-section {
+      background-color: #111;
+      padding: 40px 20px;
+    }
+
+    /* Product Section */
+    .product {
+      background-color: #222;
+      padding: 40px 20px;
+    }
+
+    .product img {
+      max-width: 300px;
+      height: auto;
+      margin: 20px 0;
+    }
+
     /* Paramotor Button Styles */
     .paramotor-button {
       position: relative;
@@ -17,7 +54,7 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 0 15px #0f0;
-      margin: 20px auto; /* Centers the button */
+      margin: 20px auto;
       cursor: pointer;
       animation: glow 1.5s infinite;
     }
@@ -40,9 +77,10 @@
       position: absolute;
       width: 140px;
       height: 140px;
-      border: 2px solid #0f0;
+      border: 6px solid;
       border-radius: 50%;
       z-index: 0;
+      animation: color-change 3s infinite;
     }
 
     .text {
@@ -68,6 +106,21 @@
       }
       50% {
         box-shadow: 0 0 25px #0f0;
+      }
+    }
+
+    @keyframes color-change {
+      0% {
+        border-color: red;
+      }
+      33% {
+        border-color: green;
+      }
+      66% {
+        border-color: blue;
+      }
+      100% {
+        border-color: red;
       }
     }
   </style>
