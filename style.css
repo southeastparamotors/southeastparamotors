@@ -9,7 +9,7 @@ body {
 .center-section {
   background: black;
   width: 100%; /* Ensures it spans full width */
-  min-height: 500px; /* Adjust height based on your needs */
+  min-height: 1200px; /* Adjust height based on your needs */
   display: flex;
   justify-content: center;
   align-items: center;
