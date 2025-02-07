@@ -8,7 +8,7 @@ body {
 
 .center-section {
   background: black;
-  height: 1500px; /* Adjust based on your needs */
+  height: 500px; /* Adjust based on your needs */
   display: flex;
   justify-content: center;
   align-items: center;
