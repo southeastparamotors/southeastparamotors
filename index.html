@@ -151,24 +151,38 @@
     <p>Pictures coming soon!</p>
   </div>
 
-  <!-- Product Section -->
+ <!-- Product Section -->
 <section class="product">
   <h2>Paramotor LED Light Kit</h2>
   <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit">
   <p>Enhance your flights with stunning LED effects. Easy to install and durable. Perfect for night flights!</p>
   <p><strong>Price:</strong> $299</p>
-  
+
   <div id="stock-status"></div>
-  
+
   <script>
-    let availableStock = 0; // Change this number to control stock availability
+    let availableStock = 5; // Change this number to add more stock
+
+    function purchaseItem() {
+      if (availableStock > 0) {
+        availableStock--; // Reduce stock when purchased
+        localStorage.setItem("paramotorStock", availableStock); // Save stock level
+
+        // Redirect to PayPal for purchase
+        window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=299.00&currency_code=USD';
+      }
+    }
+
+    // Load stock from storage (persists across page refreshes)
+    if (localStorage.getItem("paramotorStock") !== null) {
+      availableStock = parseInt(localStorage.getItem("paramotorStock"), 10);
+    }
 
     const stockStatusDiv = document.getElementById("stock-status");
 
     if (availableStock > 0) {
       stockStatusDiv.innerHTML = `
-        <p><strong>In Stock:</strong> ${availableStock} available</p>
-        <div class="paramotor-button" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=299.00&currency_code=USD';">
+        <div class="paramotor-button" onclick="purchaseItem()">
           <div class="hoop"></div>
           <div class="propeller"></div>
           <div class="text">
@@ -182,6 +196,7 @@
     }
   </script>
 </section>
+
 
   <!-- Bottom Marble Section (Fixed) -->
   <div class="marble-section">
