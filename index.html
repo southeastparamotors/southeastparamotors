@@ -152,20 +152,36 @@
   </div>
 
   <!-- Product Section -->
-  <section class="product">
-    <h2>Paramotor LED Light Kit</h2>
-    <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit">
-    <p>Enhance your flights with stunning LED effects. Easy to install and durable. Perfect for night flights!</p>
-    <p><strong>Price:</strong> $299</p>
-  <div class="paramotor-button" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=299.00&currency_code=USD';">
-      <div class="hoop"></div>
-      <div class="propeller"></div>
-      <div class="text">
-        <span style="font-size: 16px; font-weight: bold;">Click Here</span>
-        <span style="font-size: 14px;">Buy Now</span>
-      </div>
-    </div>
-  </section>
+<section class="product">
+  <h2>Paramotor LED Light Kit</h2>
+  <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit">
+  <p>Enhance your flights with stunning LED effects. Easy to install and durable. Perfect for night flights!</p>
+  <p><strong>Price:</strong> $299</p>
+  
+  <div id="stock-status"></div>
+  
+  <script>
+    let availableStock = 5; // Change this number to control stock availability
+
+    const stockStatusDiv = document.getElementById("stock-status");
+
+    if (availableStock > 0) {
+      stockStatusDiv.innerHTML = `
+        <p><strong>In Stock:</strong> ${availableStock} available</p>
+        <div class="paramotor-button" onclick="location.href='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=299.00&currency_code=USD';">
+          <div class="hoop"></div>
+          <div class="propeller"></div>
+          <div class="text">
+            <span style="font-size: 16px; font-weight: bold;">Click Here</span>
+            <span style="font-size: 14px;">Buy Now</span>
+          </div>
+        </div>
+      `;
+    } else {
+      stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
+    }
+  </script>
+</section>
 
   <!-- Bottom Marble Section (Fixed) -->
   <div class="marble-section">
