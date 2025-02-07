@@ -8,14 +8,16 @@ body {
 
 .center-section {
   background: black;
-  height: 500px; /* Adjust based on your needs */
+  width: 100%; /* Ensures it spans full width */
+  min-height: 500px; /* Adjust height based on your needs */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #39ff14; /* Keep neon green text for now */
+  color: #39ff14; /* Neon green text */
+  margin: 0; /* Remove any unexpected gaps */
+  padding: 0; /* Ensure no extra space */
 }
-
 
 .marble-section {
   background: url('assets/marble-bg.jpg') no-repeat center center !important;
