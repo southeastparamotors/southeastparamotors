@@ -9,25 +9,25 @@ body {
 .center-section {
   background: black;
   width: 100%; /* Full width */
-  min-height: 1200px; /* Keeps your existing height */
   display: flex;
   justify-content: flex-start; /* Aligns content to the left */
   align-items: center;
   text-align: center;
   color: #39ff14; /* Neon green text */
-  padding: 40px; /* Adds some spacing inside */
+  padding: 20px 40px; /* Reduced padding (20px top/bottom, 40px left/right) */
+  min-height: auto; /* Allow height to adjust based on content */
 }
 
 .video-container {
-  flex: 0 1 45%; /* Limits width to 45% to allow another video later */
-  max-width: 560px; /* Ensures video isn't too big */
+  flex: 0 1 45%; /* Limits width to 45% so another video can fit later */
+  max-width: 560px; /* Prevents video from being too large */
   text-align: center;
 }
 
 .video-container iframe {
-  width: 100%; /* Responsive sizing */
+  width: 100%; /* Responsive width */
   height: auto;
-  aspect-ratio: 16 / 9; /* Keeps video proportions */
+  aspect-ratio: 16 / 9; /* Maintains video aspect ratio */
 }
 
 
