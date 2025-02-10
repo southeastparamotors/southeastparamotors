@@ -8,16 +8,28 @@ body {
 
 .center-section {
   background: black;
-  width: 100%; /* Ensures it spans full width */
-  min-height: 1200px; /* Adjust height based on your needs */
+  width: 100%; /* Full width */
+  min-height: 1200px; /* Keeps your existing height */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Aligns content to the left */
   align-items: center;
   text-align: center;
   color: #39ff14; /* Neon green text */
-  margin: 0; /* Remove any unexpected gaps */
-  padding: 0; /* Ensure no extra space */
+  padding: 40px; /* Adds some spacing inside */
 }
+
+.video-container {
+  flex: 0 1 45%; /* Limits width to 45% to allow another video later */
+  max-width: 560px; /* Ensures video isn't too big */
+  text-align: center;
+}
+
+.video-container iframe {
+  width: 100%; /* Responsive sizing */
+  height: auto;
+  aspect-ratio: 16 / 9; /* Keeps video proportions */
+}
+
 
 .marble-section {
   background: url('assets/marble-bg.jpg') no-repeat center center !important;
