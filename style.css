@@ -123,14 +123,28 @@ footer {
 }
 }
 
-/* 🔹 Spread Out Navigation Links (Desktop & Mobile-Friendly) */
+/* 🔹 Navigation Header - Fixed at the Top */
+.nav-header {
+  width: 100%;
+  background: black;
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  position: fixed; /* Keeps the nav bar fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5); /* Neon green glow */
+}
+
+/* 🔹 Spread Out Navigation Links */
 .nav-links {
   display: flex;
-  justify-content: space-evenly; /* Evenly spaced across the width */
-  width: 90%;
-  max-width: 900px; /* Wider for better spacing */
-  margin: 20px auto;
+  justify-content: space-around; /* Evenly spaced */
+  width: 85%;
+  max-width: 1100px; /* More spacing on PC */
   text-align: center;
+  padding: 10px 0;
 }
 
 /* 🔹 Navigation Items */
@@ -139,30 +153,32 @@ footer {
   text-align: center;
   color: #39ff14; /* Neon green */
   text-decoration: none;
-  font-size: 20px; /* Default size for desktop */
+  font-size: 22px; /* Slightly larger for better visibility */
   font-weight: bold;
-  transition: color 0.3s;
-  padding: 10px 15px; /* Adds some space around each tab */
+  transition: color 0.3s, transform 0.2s;
+  padding: 12px 20px; /* Adjust padding for better spacing */
 }
 
 /* 🔹 Hover Effect */
 .nav-item:hover {
   color: white;
+  transform: scale(1.1); /* Slight zoom effect */
 }
 
 /* 🔹 Mobile Optimization */
 @media (max-width: 768px) {
   .nav-links {
-    width: 100%; /* Use full width on small screens */
-    justify-content: space-between; /* Keeps spacing, but tighter fit */
-    padding: 0 10px; /* Adds small padding to keep it neat */
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
   }
 
   .nav-item {
-    font-size: 16px; /* Slightly smaller for mobile */
-    padding: 8px 10px; /* Reduces padding to prevent crowding */
+    font-size: 18px; /* Slightly smaller for mobile */
+    padding: 10px 12px;
   }
 }
+
 
 /* 🔹 Products Page Layout */
 .products-container {
