@@ -122,3 +122,26 @@ footer {
   width: 100%;
 }
 }
+
+/* Style for the three navigation links under the header */
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto; /* Centers the navigation */
+  text-align: center;
+}
+
+.nav-item {
+  flex: 1;
+  color: #39ff14; /* Neon green */
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: white; /* Changes to white when hovered */
+}
