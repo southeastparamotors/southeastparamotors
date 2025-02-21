@@ -36,11 +36,11 @@ body {
   background-size: cover !important;
   height: 300px !important;
   display: flex !important;
-  flex-direction: column !important; /* Makes content stack vertically */
+  flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  padding: 20px; /* Ensures spacing */
+  padding: 70px 20px 20px; /* ⬅ Fix: Adds space so the header isn’t covered */
 }
 
 
