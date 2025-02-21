@@ -36,10 +36,13 @@ body {
   background-size: cover !important;
   height: 300px !important;
   display: flex !important;
+  flex-direction: column !important; /* Makes content stack vertically */
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
+  padding: 20px; /* Ensures spacing */
 }
+
 
 
 
