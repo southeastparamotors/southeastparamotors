@@ -123,28 +123,47 @@ footer {
 }
 }
 
-/* Style for the three navigation links under the header */
+/* 🔹 Spread Out Navigation Links (Desktop & Mobile-Friendly) */
 .nav-links {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
-  max-width: 600px;
-  margin: 20px auto; /* Centers the navigation */
+  justify-content: space-evenly; /* Evenly spaced across the width */
+  width: 90%;
+  max-width: 900px; /* Wider for better spacing */
+  margin: 20px auto;
   text-align: center;
 }
 
+/* 🔹 Navigation Items */
 .nav-item {
   flex: 1;
+  text-align: center;
   color: #39ff14; /* Neon green */
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px; /* Default size for desktop */
   font-weight: bold;
   transition: color 0.3s;
+  padding: 10px 15px; /* Adds some space around each tab */
 }
 
+/* 🔹 Hover Effect */
 .nav-item:hover {
-  color: white; /* Changes to white when hovered */
+  color: white;
 }
+
+/* 🔹 Mobile Optimization */
+@media (max-width: 768px) {
+  .nav-links {
+    width: 100%; /* Use full width on small screens */
+    justify-content: space-between; /* Keeps spacing, but tighter fit */
+    padding: 0 10px; /* Adds small padding to keep it neat */
+  }
+
+  .nav-item {
+    font-size: 16px; /* Slightly smaller for mobile */
+    padding: 8px 10px; /* Reduces padding to prevent crowding */
+  }
+}
+
 /* 🔹 Products Page Layout */
 .products-container {
   display: flex;
