@@ -145,3 +145,57 @@ footer {
 .nav-item:hover {
   color: white; /* Changes to white when hovered */
 }
+/* 🔹 Products Page Layout */
+.products-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* 🔹 Individual Product Card */
+.product-card {
+  width: 100%;
+  max-width: 400px;
+  background: #222;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* 🔹 Product Image */
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Product Description */
+.product-description {
+  color: #39ff14; /* Neon green */
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Buy Now Button */
+.buy-now {
+  background-color: #39ff14; /* Neon green */
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+}
+
+.buy-now:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0 0 20px #39ff14, 0 0 30px #39ff14;
+}
