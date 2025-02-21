@@ -8,14 +8,14 @@
 </head>
 <body>
 
-  <!-- 🔹 Top Section (Header) -->
+  <!-- 🔹 Top Marble Section (Header) -->
   <div class="marble-section">
     <div class="marble-content">
       <h1>Welcome to Southeast Paramotors</h1>
       <p>Paramotor equipment at an affordable price</p>
     </div>
 
-    <!-- 🔹 Navigation Links (Three Words) -->
+    <!-- 🔹 Navigation Links (Three Words: Left, Center, Right) -->
     <div class="nav-links">
       <a href="index.html" class="nav-item">Home</a>
       <a href="products.html" class="nav-item">Products</a>
@@ -23,56 +23,25 @@
     </div>
   </div>
 
-  <!-- 🔹 Product Section -->
-  <section class="product">
-    <h2>Paramotor LED Light Kit</h2>
-    <img src="/assets/paramotor-kit.jpg" alt="Paramotor LED Kit" class="product-image">
+  <!-- 🔹 Products Section -->
+  <section class="products-container">
 
-    <p>Enhance your flights with stunning LED effects. Easy to install, durable, and built for performance.</p>
-    <p>Factory LED Tube Length: 13'. Custom sizes available upon request.</p>
-    <p>Includes: LED light tube, 6.5ah Li-ion Battery & Charger, 3D Printed Control Box, Wiring Harness, 20 Zip Ties, and an Instruction Manual.</p>
-    <p>Next Batch Ships: <strong>February 28, 2025</strong></p>
-    <p><strong>FREE SHIPPING TO USA CUSTOMERS</strong></p>
-    <p><strong>Price:</strong> <span style="font-size: 20px; color: #39ff14;">$269.99</span></p>
+    <!-- 🔹 First Product: Paramotor LED Light Kit -->
+    <div class="product-card">
+      <img src="/assets/paramotor-kit.jpg" alt="Paramotor LED Kit" class="product-image">
+      <p class="product-description">
+        High-quality paramotor LED kit for enhanced visibility and style.
+      </p>
+      <button class="buy-now" onclick="purchaseItem()">Buy Now</button>
+    </div>
 
-    <div id="stock-status"></div>
-
-    <script>
-      let availableStock = 2; // Change this number to add more stock
-
-      function purchaseItem() {
-        if (availableStock > 0) {
-          availableStock--; 
-          localStorage.setItem("paramotorStock", availableStock); 
-
-          // Redirect to PayPal for purchase
-          window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=269.99&currency_code=USD';
-        }
-      }
-
-      if (localStorage.getItem("paramotorStock") !== null) {
-        availableStock = parseInt(localStorage.getItem("paramotorStock"), 10);
-      }
-
-      const stockStatusDiv = document.getElementById("stock-status");
-
-      if (availableStock > 0) {
-        stockStatusDiv.innerHTML = `
-          <p style="color: green; font-weight: bold;">In Stock – Ready to Build</p>
-          <button class="buy-now" onclick="purchaseItem()">Buy Now</button>
-        `;
-      } else {
-        stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
-      }
-    </script>
   </section>
 
-  <!-- 🔹 Bottom Section -->
-  <section class="marble-section">
-    <p>Each kit is built by me in the great state of Georgia, USA.</p>
-    <p>I personally test each kit before shipping to ensure quality.</p>
-    <p>Thank you for your support!</p>
-  </section>
+  <script>
+    function purchaseItem() {
+      window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=269.99&currency_code=USD';
+    }
+  </script>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -81,3 +50,4 @@
 
 </body>
 </html>
+
