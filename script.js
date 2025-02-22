@@ -1,7 +1,10 @@
-const GITHUB_REPO = "YOUR_GITHUB_USERNAME/YOUR_REPO_NAME";  // Replace with your repo
-const FILE_PATH = "stock.json";  // Stock data file
-const TOKEN = "YOUR_NEW_PERSONAL_ACCESS_TOKEN";  // Secure new token
+const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // 🔹 Replace with your GitHub repo
+const FILE_PATH = "stock.json";  // 🔹 Stock data file
+const TOKEN = process.env.MY_TOKEN;  // 🔹 Secure token (Use GitHub Secrets for security)
 
+/**
+ * Fetch the current stock from GitHub.
+ */
 async function getStock() {
     const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
         headers: { Authorization: `token ${TOKEN}` }
@@ -12,17 +15,21 @@ async function getStock() {
         const stockData = JSON.parse(atob(data.content)); // Decode base64 file
         return { stock: stockData, sha: data.sha };
     } else {
-        return { stock: {}, sha: null };  // Default empty object if file doesn’t exist
+        console.error("❌ Failed to fetch stock data:", response);
+        return { stock: {}, sha: null };  // Return empty object if file doesn't exist
     }
 }
 
+/**
+ * Updates stock count on GitHub after purchase.
+ */
 async function updateStock(productName, sha) {
     const { stock } = await getStock();
-    
-    if (stock[productName] > 0) {
-        stock[productName] -= 1;  // Reduce stock for the specific product
 
-        await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+    if (stock[productName] > 0) {
+        stock[productName] -= 1;  // Reduce stock for the selected product
+
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
             method: "PUT",
             headers: {
                 Authorization: `token ${TOKEN}`,
@@ -34,9 +41,18 @@ async function updateStock(productName, sha) {
                 sha: sha
             })
         });
+
+        if (response.ok) {
+            console.log(`✅ Stock updated for ${productName}`);
+        } else {
+            console.error("❌ Failed to update stock:", response);
+        }
     }
 }
 
+/**
+ * Handles product purchase.
+ */
 async function purchaseItem(productName, price) {
     const { stock, sha } = await getStock();
 
@@ -46,11 +62,13 @@ async function purchaseItem(productName, price) {
         // Redirect to PayPal with correct product name and price
         window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price}&currency_code=USD`;
     } else {
-        alert("Out of Stock, check back for availability.");
+        alert("❌ Out of Stock, check back for availability.");
     }
 }
 
-// Show "In Stock" or "Out of Stock" for each product
+/**
+ * Updates stock display on page load.
+ */
 document.addEventListener("DOMContentLoaded", async () => {
     const { stock } = await getStock();
 
