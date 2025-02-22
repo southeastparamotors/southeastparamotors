@@ -1,22 +1,24 @@
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // Your GitHub repo
-const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
+const FILE_PATH = "stock.json";  // GitHub stock data file
+const TOKEN = process.env.MY_TOKEN;  // Use GitHub Secrets to securely store the token
 
 /**
- * Handles product purchase by triggering GitHub Actions.
+ * Fetches current stock from GitHub.
  */
-async function purchaseItem(productName, price) {
-    const { stock, sha } = await getStock();
+async function getStock() {
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+        headers: { Authorization: `token ${TOKEN}` }
+    });
 
-    if (stock[productName] > 0) {
-        await updateStock(productName, sha); // Reduce stock for this product
-
-        // ✅ Redirect to PayPal with dynamic product name and price
-        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
+    if (response.ok) {
+        const data = await response.json();
+        const stockData = JSON.parse(atob(data.content)); // Decode base64 file
+        return { stock: stockData, sha: data.sha };
     } else {
-        alert("❌ Out of Stock, check back for availability.");
+        console.error("❌ Failed to fetch stock data:", response);
+        return { stock: {}, sha: null };  // Return empty object if file doesn't exist
     }
 }
-
 
 /**
  * Updates stock count on GitHub after purchase.
@@ -57,8 +59,8 @@ async function purchaseItem(productName, price) {
     if (stock[productName] > 0) {
         await updateStock(productName, sha); // Reduce stock for this product
 
-        // Redirect to PayPal with correct product name and price
-        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price}&currency_code=USD`;
+        // ✅ Redirect to PayPal with dynamic product name and price
+        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
     } else {
         alert("❌ Out of Stock, check back for availability.");
     }
