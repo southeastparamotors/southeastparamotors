@@ -54,12 +54,14 @@ async function updateStock(productName, sha) {
  * Handles product purchase.
  */
 async function purchaseItem(productName, price) {
+    console.log(`Purchasing: ${productName} for $${price}`); // Debugging Log
+
     const { stock, sha } = await getStock();
 
     if (stock[productName] > 0) {
         await updateStock(productName, sha); // Reduce stock for this product
 
-        // ✅ Redirect to PayPal with dynamic product name and price
+        // ✅ Redirect to PayPal with the correct product name and price
         window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
     } else {
         alert("❌ Out of Stock, check back for availability.");
