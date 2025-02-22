@@ -150,6 +150,14 @@ body {
   margin-bottom: 15px;
 }
 
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #39ff14; /* Neon green price */
+  margin-top: 5px;
+}
+
+
 /* 🔹 Product Description */
 .product-description {
   color: #39ff14;
