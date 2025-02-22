@@ -125,15 +125,43 @@ footer {
 
 .nav-header {
   width: 100%;
-  background: transparent; /* ⬅ Fix: Makes the background see-through */
+  background: transparent; /* Keeps it overlayed */
   padding: 15px 0;
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: fixed; /* Stays at the top and does not scroll */
   top: 0;
   left: 0;
   z-index: 1000;
+  height: 60px; /* Keeps height consistent */
 }
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 85%;
+  max-width: 1100px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: #39ff14;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Ensures visibility */
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.2s;
+  padding: 12px 20px;
+}
+
+/* Make sure content starts below the fixed nav */
+.marble-section {
+  padding-top: 80px; /* Ensures content is not hidden behind the fixed nav */
+}
+
 
 
 /* 🔹 Spread Out Navigation Links */
