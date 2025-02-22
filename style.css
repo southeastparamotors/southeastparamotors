@@ -50,6 +50,12 @@ body {
   padding-top: 20px; /* Keeps spacing */
 }
 
+/* 🔹 Top Marble Section - Change Text to White */
+.marble-content {
+  color: white !important; /* ⬅ Changes text to white */
+}
+
+
 /* 🔹 Navigation Tabs */
 .nav-links {
   display: flex;
