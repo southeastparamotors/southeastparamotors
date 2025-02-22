@@ -108,7 +108,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px; /* ⬅ Keeps spacing correct below the marble section */
+  padding: 80px 20px 40px; /* ⬅ Moves product down into the black section */
+  background-color: black; /* ⬅ Ensures background matches the black section */
 }
 
 /* 🔹 Individual Product Card */
@@ -119,13 +120,13 @@ body {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
-  margin-top: 20px; /* ⬅ Small gap between first product & marble section */
+  margin-top: 40px; /* ⬅ Ensures product does not touch the marble section */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* 🔹 Product Image */
 .product-image {
-  max-width: 90%; /* ⬅ Prevents the image from blowing up */
+  max-width: 90%;
   height: auto;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -157,6 +158,7 @@ body {
   color: black;
   box-shadow: 0 0 20px #39ff14, 0 0 30px #39ff14;
 }
+
 /* 🔹 Footer */
 footer {
   text-align: center;
