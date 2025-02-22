@@ -63,15 +63,18 @@ body {
 
 /* 🔹 Navigation Items */
 .nav-item {
+  flex: 1;
   text-align: center;
   color: #39ff14;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Ensures visibility */
   text-decoration: none;
   font-size: 22px;
   font-weight: bold;
+  text-transform: uppercase; /* ⬅ This makes it all caps */
   transition: color 0.3s, transform 0.2s;
   padding: 12px 20px;
 }
+
 
 /* 🔹 Specific Placement of Tabs */
 .nav-links a:nth-child(1) { /* Home - Left Side */
