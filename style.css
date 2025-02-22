@@ -123,19 +123,18 @@ footer {
 }
 
 
-/* 🔹 Navigation Header - Fixed at the Top */
 .nav-header {
   width: 100%;
-  background: black;
+  background: transparent; /* ⬅ Fix: Makes the background see-through */
   padding: 15px 0;
   display: flex;
   justify-content: center;
-  position: fixed; /* Keeps the nav bar fixed at the top */
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.5); /* Neon green glow */
 }
+
 
 /* 🔹 Spread Out Navigation Links */
 .nav-links {
