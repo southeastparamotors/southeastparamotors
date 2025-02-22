@@ -1,6 +1,6 @@
 console.log("✅ script.js is loaded and running!");
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";
-onst WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
+const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
 
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
@@ -97,4 +97,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
-window.updateStock = updateStock;  // Add this at the bottom of script.js
