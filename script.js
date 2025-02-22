@@ -54,12 +54,14 @@ async function updateStock(productName, sha) {
  * Handles product purchase.
  */
 async function purchaseItem(productName, price) {
-    console.log(`🔍 Debug: Purchasing ${productName} for $${price}`); // 🔹 Check if correct values are being passed
+    console.log(`🔍 Debug: Button clicked for ${productName} - Price: $${price}`);  // ✅ This should show the correct price
 
     const { stock, sha } = await getStock();
 
     if (stock[productName] > 0) {
         await updateStock(productName, sha); // Reduce stock for this product
+
+        console.log(`✅ Redirecting to PayPal for ${productName} at $${price}`);  // ✅ This should confirm the correct price
 
         // ✅ Redirect to PayPal with the correct product name and price
         window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
