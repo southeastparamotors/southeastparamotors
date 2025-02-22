@@ -5,25 +5,18 @@ const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
  * Handles product purchase by triggering GitHub Actions.
  */
 async function purchaseItem(productName, price) {
-    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${WORKFLOW_PATH}/dispatches`, {
-        method: "POST",
-        headers: {
-            "Accept": "application/vnd.github.v3+json",
-            "Authorization": `Bearer ${GITHUB_TOKEN}`
-        },
-        body: JSON.stringify({
-            ref: "main",  // Replace with your default branch (main or master)
-            inputs: { product: productName }
-        })
-    });
+    const { stock, sha } = await getStock();
 
-    if (response.ok) {
-        // Redirect to PayPal after stock update
-        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price}&currency_code=USD`;
+    if (stock[productName] > 0) {
+        await updateStock(productName, sha); // Reduce stock for this product
+
+        // ✅ Redirect to PayPal with dynamic product name and price
+        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
     } else {
-        alert("❌ Error updating stock. Please try again.");
+        alert("❌ Out of Stock, check back for availability.");
     }
 }
+
 
 /**
  * Updates stock count on GitHub after purchase.
