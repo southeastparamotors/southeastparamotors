@@ -5,7 +5,11 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, black 33%, #000000 66%);
   color: #39ff14;
+  min-height: 100vh; /* Ensures full-page height */
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* 🔹 Center Section */
 .center-section {
@@ -170,7 +174,7 @@ footer {
   background-color: #333;
   color: white;
   padding: 10px;
-  position: fixed;
-  bottom: 0;
+  position: relative; /* ⬅ Fixes scrolling issue */
   width: 100%;
+  margin-top: 50px; /* ⬅ Adds space before footer */
 }
