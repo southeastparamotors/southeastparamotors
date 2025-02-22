@@ -1,3 +1,5 @@
+console.log("✅ script.js is loaded and running!");
+
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // Your GitHub repo
 const FILE_PATH = "stock.json";  // GitHub stock data file
 const TOKEN = process.env.MY_TOKEN;  // Use GitHub Secrets to securely store the token
