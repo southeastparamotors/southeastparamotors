@@ -2,13 +2,18 @@ console.log("✅ script.js is loaded and running!");
 
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
-    const response = await fetch("https://southeastparamotors.com/stock.json");  
+    try {
+        const response = await fetch("https://southeastparamotors.com/stock.json");  
 
-    if (response.ok) {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const stockData = await response.json();
+        console.log("✅ Stock loaded:", stockData);
         return { stock: stockData };
-    } else {
-        console.error("❌ Failed to fetch stock data:", response);
+    } catch (error) {
+        console.error("❌ Failed to fetch stock data:", error);
         return { stock: {} };
     }
 }
@@ -25,7 +30,7 @@ async function purchaseItem(productName, price) {
     const { stock } = await getStock();
 
     if (stock[productName] > 0) {
-        stock[productName] -= 1;  // Reduce stock locally (this does not save it yet)
+        console.log(`✅ Stock available for ${productName}: ${stock[productName]}`);
 
         // ✅ Redirect to PayPal with correct product name and price
         console.log("✅ Redirecting to PayPal:", productName, price);
@@ -50,3 +55,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 });
+
