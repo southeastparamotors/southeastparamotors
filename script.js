@@ -1,72 +1,31 @@
 console.log("✅ script.js is loaded and running!");
 
-const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // Your GitHub repo
-const FILE_PATH = "stock.json";  // GitHub stock data file
-
-/**
- * Fetches current stock from GitHub.
- */
+// ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
-    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
-        headers: { Authorization: `token ${TOKEN}` }
-    });
+    const response = await fetch("https://southeastparamotors.com/stock.json");  
 
     if (response.ok) {
-        const data = await response.json();
-        const stockData = JSON.parse(atob(data.content)); // Decode base64 file
-        return { stock: stockData, sha: data.sha };
+        const stockData = await response.json();
+        return { stock: stockData };
     } else {
         console.error("❌ Failed to fetch stock data:", response);
-        return { stock: {}, sha: null };  // Return empty object if file doesn't exist
+        return { stock: {} };
     }
 }
 
-/**
- * Updates stock count on GitHub after purchase.
- */
-async function updateStock(productName, sha) {
-    const { stock } = await getStock();
-
-    if (stock[productName] > 0) {
-        stock[productName] -= 1;  // Reduce stock for the selected product
-
-        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
-            method: "PUT",
-            headers: {
-                Authorization: `token ${TOKEN}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: `Updated stock for ${productName}`,
-                content: btoa(JSON.stringify(stock)),  // Encode updated JSON to base64
-                sha: sha
-            })
-        });
-
-        if (response.ok) {
-            console.log(`✅ Stock updated for ${productName}`);
-        } else {
-            console.error("❌ Failed to update stock:", response);
-        }
-    }
-}
-
-/**
- * Handles product purchase.
- */
+// ✅ Handles product purchase
 async function purchaseItem(productName, price) {
     console.log("🔥 Click detected for:", productName, "with price:", price);
 
-    // ✅ Confirm the correct price is passed
     if (!price || isNaN(price)) {
         console.error("❌ Error: Price is missing or invalid for", productName);
         return;
     }
 
-    const { stock, sha } = await getStock();
+    const { stock } = await getStock();
 
     if (stock[productName] > 0) {
-        await updateStock(productName, sha); // Reduce stock for this product
+        stock[productName] -= 1;  // Reduce stock locally (this does not save it yet)
 
         // ✅ Redirect to PayPal with correct product name and price
         console.log("✅ Redirecting to PayPal:", productName, price);
@@ -76,9 +35,7 @@ async function purchaseItem(productName, price) {
     }
 }
 
-/**
- * Updates stock display on page load.
- */
+// ✅ Updates stock display on page load
 document.addEventListener("DOMContentLoaded", async () => {
     const { stock } = await getStock();
 
