@@ -1,4 +1,5 @@
 console.log("✅ script.js is loaded and running!");
+const GITHUB_REPO = "southeastparamotors/southeastparamotors";
 
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
