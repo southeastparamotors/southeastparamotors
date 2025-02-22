@@ -125,16 +125,13 @@ footer {
 /* 🔹 Navigation Header - Fixed at the Top */
 .nav-header {
   width: 100%;
-  background: transparent; /* Keeps it overlayed */
+  background: transparent;
   padding: 15px 0;
   display: flex;
   justify-content: center;
-  position: fixed; /* Stays at the top and does not scroll */
-  top: 0;
-  left: 0;
-  z-index: 1000;
   height: 60px; /* Keeps height consistent */
 }
+
 
 /* 🔹 Spread Out Navigation Links */
 .nav-links {
