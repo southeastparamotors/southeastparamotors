@@ -1,0 +1,33 @@
+name: Update Stock After Purchase
+
+on:
+  repository_dispatch:
+    types: [purchase_made]
+
+jobs:
+  update-stock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Decrease Stock
+        run: |
+          PRODUCT_NAME="${{ github.event.client_payload.product }}"
+          STOCK_FILE="stock.json"
+
+          # Reduce stock count
+          jq --arg product "$PRODUCT_NAME" '
+            if has($product) then 
+              .[$product] -= 1 | if .[$product] < 0 then .[$product] = 0 else .[$product] end 
+            else . end
+          ' "$STOCK_FILE" > temp.json && mv temp.json "$STOCK_FILE"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add stock.json
+          git commit -m "Updated stock after purchase: $PRODUCT_NAME" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/southeastparamotors/southeastparamotors.git
