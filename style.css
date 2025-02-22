@@ -1,4 +1,4 @@
-/* 🔹 General Page Styles */
+/* 🔹 Reset & General Styles */
 body {
   margin: 0;
   padding: 0;
@@ -7,65 +7,7 @@ body {
   color: #39ff14;
 }
 
-/* 🔹 Top Section - Marble Background */
-.marble-section {
-  background: url('assets/marble-bg.jpg') no-repeat center center !important;
-  background-size: cover !important;
-  height: 300px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  padding: 100px 20px 20px; /* ⬅ Adjusted so content is not covered */
-}
-
-.marble-content {
-  color: #39ff14; /* Neon green text */
-}
-
-/* 🔹 Navigation Tabs (Inside Marble Section) */
-.nav-links {
-  display: flex;
-  justify-content: space-around;
-  width: 85%;
-  max-width: 1100px;
-  text-align: center;
-  padding: 10px 0;
-}
-
-.nav-item {
-  flex: 1;
-  text-align: center;
-  color: #39ff14;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Ensures visibility */
-  text-decoration: none;
-  font-size: 22px;
-  font-weight: bold;
-  transition: color 0.3s, transform 0.2s;
-  padding: 12px 20px;
-}
-
-.nav-item:hover {
-  color: white;
-  transform: scale(1.1); /* Slight zoom effect */
-}
-
-/* 🔹 Mobile Optimization */
-@media (max-width: 768px) {
-  .nav-links {
-    width: 100%;
-    justify-content: space-between;
-    padding: 0 15px;
-  }
-
-  .nav-item {
-    font-size: 18px; /* Slightly smaller for mobile */
-    padding: 10px 12px;
-  }
-}
-
-/* 🔹 Center Section (Video Section on Home Page) */
+/* 🔹 Center Section */
 .center-section {
   background: black;
   width: 100%;
@@ -78,6 +20,7 @@ body {
   min-height: auto;
 }
 
+/* 🔹 Video Container */
 .video-container {
   flex: 0 1 45%;
   max-width: 560px;
@@ -90,14 +33,71 @@ body {
   aspect-ratio: 16 / 9;
 }
 
-/* 🔹 Product Styles */
-.products-container {
+/* 🔹 Top Marble Section */
+.marble-section {
+  background: url('assets/marble-bg.jpg') no-repeat center center !important;
+  background-size: cover !important;
+  height: 300px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding-top: 20px; /* Ensures spacing remains correct */
+}
+
+/* 🔹 Navigation Tabs (Fixed for All Pages) */
+.nav-links {
+  display: flex;
+  justify-content: space-between; /* Evenly spaced across screen */
+  width: 80%;
+  max-width: 1100px;
+  text-align: center;
+  padding-top: 20px; /* Adjusts tab position */
+}
+
+/* 🔹 Navigation Items */
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: #39ff14;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.2s;
+  padding: 12px 20px;
+}
+
+/* 🔹 Hover Effect */
+.nav-item:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* 🔹 Mobile Optimization */
+@media (max-width: 768px) {
+  .nav-links {
+    width: 90%;
+    justify-content: space-around;
+  }
+
+  .nav-item {
+    font-size: 18px;
+    padding: 8px 10px;
+  }
+}
+
+/* 🔹 Products & Installation Page Containers */
+.products-container,
+.installation-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
 }
 
+/* 🔹 Individual Product Card */
 .product-card {
   width: 100%;
   max-width: 400px;
@@ -109,6 +109,7 @@ body {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+/* 🔹 Product Image */
 .product-image {
   max-width: 100%;
   height: auto;
@@ -116,6 +117,7 @@ body {
   margin-bottom: 15px;
 }
 
+/* 🔹 Product Description */
 .product-description {
   color: #39ff14;
   font-size: 16px;
