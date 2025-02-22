@@ -1,22 +1,27 @@
-const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // 🔹 Replace with your GitHub repo
-const FILE_PATH = "stock.json";  // 🔹 Stock data file
-const TOKEN = process.env.MY_TOKEN;  // 🔹 Secure token (Use GitHub Secrets for security)
+const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // Your GitHub repo
+const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
 
 /**
- * Fetch the current stock from GitHub.
+ * Handles product purchase by triggering GitHub Actions.
  */
-async function getStock() {
-    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
-        headers: { Authorization: `token ${TOKEN}` }
+async function purchaseItem(productName, price) {
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${WORKFLOW_PATH}/dispatches`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/vnd.github.v3+json",
+            "Authorization": `Bearer ${GITHUB_TOKEN}`
+        },
+        body: JSON.stringify({
+            ref: "main",  // Replace with your default branch (main or master)
+            inputs: { product: productName }
+        })
     });
 
     if (response.ok) {
-        const data = await response.json();
-        const stockData = JSON.parse(atob(data.content)); // Decode base64 file
-        return { stock: stockData, sha: data.sha };
+        // Redirect to PayPal after stock update
+        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price}&currency_code=USD`;
     } else {
-        console.error("❌ Failed to fetch stock data:", response);
-        return { stock: {}, sha: null };  // Return empty object if file doesn't exist
+        alert("❌ Error updating stock. Please try again.");
     }
 }
 
