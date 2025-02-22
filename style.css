@@ -114,7 +114,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  margin-top: 50px; /* ⬅ Moves it BELOW the marble section */
+  margin-top: 40px; /* ⬅ Moves it BELOW the marble section */
   background-color: black; /* ⬅ Keeps it inside the black middle section */
   width: 100%;
   min-height: 500px; /* ⬅ Ensures full scrolling */
