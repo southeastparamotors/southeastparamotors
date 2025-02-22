@@ -23,8 +23,18 @@
     <p>Paramotor equipment at an affordable price</p>
   </div>
 
-   <!-- Products Section (Now correctly positioned below marble section) -->
-  <section class="products-container">
+   /* 🔹 Products Page Layout - Now Correctly Positioned */
+.products-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  margin-top: 50px; /* ⬅ Moves it BELOW the marble section */
+  background-color: black; /* ⬅ Keeps it inside the black middle section */
+  width: 100%;
+  min-height: 400px; /* ⬅ Ensures content stays properly positioned */
+}
 
     <!-- Product 1 -->
     <div class="product-card">
