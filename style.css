@@ -178,3 +178,27 @@ footer {
   width: 100%;
   margin-top: 50px; /* ⬅ Adds space before footer */
 }
+
+/* 🔹 Installation Instructions Section */
+.installation-container {
+  background-color: black; /* ⬅ Places it in the middle black section */
+  color: #39ff14; /* Neon green text */
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto; /* ⬅ Centers the instructions */
+  border-radius: 10px;
+}
+
+/* 🔹 Ensure full scrolling */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Ensure enough space before footer */
+footer {
+  position: relative;
+  margin-top: 50px; /* ⬅ Adds space before footer */
+}
