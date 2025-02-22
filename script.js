@@ -56,3 +56,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
+window.updateStock = updateStock;  // Add this at the bottom of script.js
