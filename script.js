@@ -2,7 +2,6 @@ console.log("✅ script.js is loaded and running!");
 
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";  // Your GitHub repo
 const FILE_PATH = "stock.json";  // GitHub stock data file
-const TOKEN = "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"; // Replace with actual token
 
 /**
  * Fetches current stock from GitHub.
