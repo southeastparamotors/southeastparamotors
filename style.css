@@ -214,35 +214,19 @@ footer {
   border-radius: 10px;
 }
 
-/* 🔹 Fix list formatting issue */
+/* 🔹 Fix list formatting */
 .installation-container ul {
-  list-style-position: inside; /* Ensures bullets stay with text */
-  text-align: left;
-  display: inline-block;
-  font-size: 18px;
-  line-height: 1.5;
-  padding-left: 0;
-}
-
-/* 🔹 Fix list spacing for installation steps */
-.installation-container ul {
-  list-style-position: outside; /* Ensures bullets stay aligned */
+  list-style-position: outside; /* Ensures bullets stay properly aligned */
   text-align: left; /* Aligns text properly */
-  display: inline-block;
+  display: block;
   font-size: 20px;
-  line-height: 1.8; /* Adjust spacing between lines */
-  padding-left: 20px; /* Adds space between bullets and text */
+  line-height: 1.8; /* Adjusts spacing between lines */
+  padding-left: 30px; /* Adds space between bullets and text */
 }
 
 /* 🔹 Make sure list items have even spacing */
 .installation-container li {
   display: list-item;
-  margin-bottom: 15px; /* Adds space between steps */
-  white-space: nowrap; /* Prevents unintended line breaks */
-}
-
-/* 🔹 Make sure list items display correctly */
-.installation-container li {
-  display: list-item;
-  margin-bottom: 10px; /* Adds space between steps */
+  margin-bottom: 12px; /* Ensures even spacing between steps */
+  white-space: normal; /* Prevents breaking issues */
 }
