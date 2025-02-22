@@ -40,6 +40,44 @@ async function purchaseItem(productName, price) {
     }
 }
 
+/**
+ * Updates stock count on GitHub after purchase.
+ */
+async function updateStock(productName) {
+    console.log(`🔥 Updating stock for ${productName}...`);
+
+    const { stock, sha } = await getStock();
+
+    if (stock[productName] > 0) {
+        stock[productName] -= 1;  // Reduce stock for the selected product
+
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `token ${TOKEN}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: `Updated stock for ${productName}`,
+                content: btoa(JSON.stringify(stock)),  // Encode updated JSON to base64
+                sha: sha
+            })
+        });
+
+        if (response.ok) {
+            console.log(`✅ Stock updated for ${productName}`);
+        } else {
+            console.error("❌ Failed to update stock:", response);
+        }
+    } else {
+        console.warn(`⚠️ Stock for ${productName} is already at 0.`);
+    }
+}
+
+// ✅ Make `updateStock` globally available for testing
+window.updateStock = updateStock;
+
+
 // ✅ Updates stock display on page load
 document.addEventListener("DOMContentLoaded", async () => {
     const { stock } = await getStock();
