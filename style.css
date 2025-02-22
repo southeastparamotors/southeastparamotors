@@ -224,6 +224,23 @@ footer {
   padding-left: 0;
 }
 
+/* 🔹 Fix list spacing for installation steps */
+.installation-container ul {
+  list-style-position: outside; /* Ensures bullets stay aligned */
+  text-align: left; /* Aligns text properly */
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1.8; /* Adjust spacing between lines */
+  padding-left: 20px; /* Adds space between bullets and text */
+}
+
+/* 🔹 Make sure list items have even spacing */
+.installation-container li {
+  display: list-item;
+  margin-bottom: 15px; /* Adds space between steps */
+  white-space: nowrap; /* Prevents unintended line breaks */
+}
+
 /* 🔹 Make sure list items display correctly */
 .installation-container li {
   display: list-item;
