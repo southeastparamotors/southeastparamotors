@@ -1,3 +1,4 @@
+/* 🔹 General Page Styles */
 body {
   margin: 0;
   padding: 0;
@@ -6,31 +7,7 @@ body {
   color: #39ff14;
 }
 
-.center-section {
-  background: black;
-  width: 100%; /* Full width */
-  display: flex;
-  justify-content: flex-start; /* Aligns content to the left */
-  align-items: center;
-  text-align: center;
-  color: #39ff14; /* Neon green text */
-  padding: 20px 40px; /* Reduced padding (20px top/bottom, 40px left/right) */
-  min-height: auto; /* Allow height to adjust based on content */
-}
-
-.video-container {
-  flex: 0 1 45%; /* Limits width to 45% so another video can fit later */
-  max-width: 560px; /* Prevents video from being too large */
-  text-align: center;
-}
-
-.video-container iframe {
-  width: 100%; /* Responsive width */
-  height: auto;
-  aspect-ratio: 16 / 9; /* Maintains video aspect ratio */
-}
-
-
+/* 🔹 Top Section - Marble Background */
 .marble-section {
   background: url('assets/marble-bg.jpg') no-repeat center center !important;
   background-size: cover !important;
@@ -40,90 +17,14 @@ body {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  padding: 70px 20px 20px; /* ⬅ Fix: Adds space so the header isn’t covered */
+  padding: 100px 20px 20px; /* ⬅ Adjusted so content is not covered */
 }
-
-
-
 
 .marble-content {
   color: #39ff14; /* Neon green text */
 }
 
-
-
-header {
-  width: 100%;
-  height: 300px; /* You can adjust this height or remove it */
-  background: none; /* Remove the image */
-  text-align: center;
-  color: #39ff14; /* Keep neon green text */
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.header-content {
-  text-align: center;
-  margin-top: 20px; /* Optional: Add spacing */
-}
-
-
-@media (max-width: 768px) {
-  header {
-    height: 200px; /* Smaller header height for mobile */
-    font-size: 14px; /* Adjust font size for better readability */
-  }
-}
-
-
-.product {
-  padding: 20px;
-  text-align: center;
-}
-
-.product img {
-  max-width: 80%;
-  height: auto;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  margin: 20px 0;
-}
-
-button.buy-now {
-  background-color: #39ff14; /* Neon green */
-  color: white; /* White text */
-  border: none;
-  padding: 15px 30px;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
-}
-
-button.buy-now:hover {
-  box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 50px #39ff14;
-  transform: scale(1.05); /* Slight zoom effect */
-}
-
-footer {
-  text-align: center;
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-
-/* 🔹 Spread Out Navigation Links */
+/* 🔹 Navigation Tabs (Inside Marble Section) */
 .nav-links {
   display: flex;
   justify-content: space-around;
@@ -133,7 +34,6 @@ footer {
   padding: 10px 0;
 }
 
-/* 🔹 Navigation Items */
 .nav-item {
   flex: 1;
   text-align: center;
@@ -146,7 +46,6 @@ footer {
   padding: 12px 20px;
 }
 
-/* 🔹 Hover Effect */
 .nav-item:hover {
   color: white;
   transform: scale(1.1); /* Slight zoom effect */
@@ -166,22 +65,32 @@ footer {
   }
 }
 
-/* 🔹 Ensure Header is Not Covered by Fixed Nav */
-.marble-section {
-  background: url('assets/marble-bg.jpg') no-repeat center center !important;
-  background-size: cover !important;
-  height: 300px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  padding-top: 100px; /* Adjusts for nav bar height */
-  padding-bottom: 20px; /* Keeps spacing below header */
+/* 🔹 Center Section (Video Section on Home Page) */
+.center-section {
+  background: black;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  color: #39ff14;
+  padding: 20px 40px;
+  min-height: auto;
 }
 
+.video-container {
+  flex: 0 1 45%;
+  max-width: 560px;
+  text-align: center;
+}
 
-/* 🔹 Products Page Layout */
+.video-container iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* 🔹 Product Styles */
 .products-container {
   display: flex;
   flex-direction: column;
@@ -189,7 +98,6 @@ footer {
   padding: 40px 20px;
 }
 
-/* 🔹 Individual Product Card */
 .product-card {
   width: 100%;
   max-width: 400px;
@@ -201,7 +109,6 @@ footer {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* 🔹 Product Image */
 .product-image {
   max-width: 100%;
   height: auto;
@@ -209,16 +116,15 @@ footer {
   margin-bottom: 15px;
 }
 
-/* 🔹 Product Description */
 .product-description {
-  color: #39ff14; /* Neon green */
+  color: #39ff14;
   font-size: 16px;
   margin-bottom: 10px;
 }
 
 /* 🔹 Buy Now Button */
 .buy-now {
-  background-color: #39ff14; /* Neon green */
+  background-color: #39ff14;
   color: black;
   border: none;
   padding: 10px 20px;
@@ -234,4 +140,15 @@ footer {
   background-color: white;
   color: black;
   box-shadow: 0 0 20px #39ff14, 0 0 30px #39ff14;
+}
+
+/* 🔹 Footer */
+footer {
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
