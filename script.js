@@ -1,76 +1,67 @@
-// ✅ Fetch Stock Data from GitHub
+const GITHUB_REPO = "YOUR_GITHUB_USERNAME/YOUR_REPO_NAME";  // Replace with your repo
+const FILE_PATH = "stock.json";  // Stock data file
+const TOKEN = "YOUR_NEW_PERSONAL_ACCESS_TOKEN";  // Secure new token
+
 async function getStock() {
-  const response = await fetch('https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/stock.json');
-  const stock = await response.json();
-  return stock;
-}
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+        headers: { Authorization: `token ${TOKEN}` }
+    });
 
-// ✅ Reduce Stock & Update GitHub
-async function updateStock(productId) {
-  const stock = await getStock();
-  
-  if (stock[productId] > 0) {
-    stock[productId]--; // Reduce stock count
-    saveStock(stock); // Save updated stock
-  }
-}
-
-// ✅ Save Stock to GitHub
-async function saveStock(updatedStock) {
-  await fetch('https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO/contents/stock.json', {
-    method: "PUT",
-    headers: {
-      "Authorization": "token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: "Update stock",
-      content: btoa(JSON.stringify(updatedStock, null, 2)),
-      sha: await getStockSHA()
-    })
-  });
-}
-
-// ✅ Get SHA for Updating Stock File
-async function getStockSHA() {
-  const response = await fetch('https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO/contents/stock.json');
-  const fileData = await response.json();
-  return fileData.sha;
-}
-
-// ✅ Handle Purchase & Redirect to PayPal
-async function purchaseItem(productId, price) {
-  const stock = await getStock();
-
-  if (stock[productId] > 0) {
-    await updateStock(productId); // Reduce stock globally
-
-    // 🔹 Redirect to PayPal
-    window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${productId}&amount=${price}&currency_code=USD`;
-  } else {
-    alert("Sorry, this item is out of stock!");
-  }
-}
-
-// ✅ Update Stock Display on Page Load
-async function updateStockDisplay() {
-  const stock = await getStock();
-  
-  const stockElements = {
-    "paramotor_kit": document.getElementById("stock-paramotor"),
-    "battery": document.getElementById("stock-battery"),
-    "control_box": document.getElementById("stock-control"),
-    "wiring_harness": document.getElementById("stock-wiring"),
-    "led_tube": document.getElementById("stock-ledtube")
-  };
-
-  Object.keys(stockElements).forEach(productId => {
-    if (stockElements[productId]) {
-      stockElements[productId].innerHTML = stock[productId] > 0
-        ? `<p style="color: green; font-weight: bold;">In Stock – Ready to Build</p>`
-        : `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
+    if (response.ok) {
+        const data = await response.json();
+        const stockData = JSON.parse(atob(data.content)); // Decode base64 file
+        return { stock: stockData, sha: data.sha };
+    } else {
+        return { stock: {}, sha: null };  // Default empty object if file doesn’t exist
     }
-  });
 }
 
-document.addEventListener("DOMContentLoaded", updateStockDisplay);
+async function updateStock(productName, sha) {
+    const { stock } = await getStock();
+    
+    if (stock[productName] > 0) {
+        stock[productName] -= 1;  // Reduce stock for the specific product
+
+        await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `token ${TOKEN}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: `Updated stock for ${productName}`,
+                content: btoa(JSON.stringify(stock)),  // Encode updated JSON to base64
+                sha: sha
+            })
+        });
+    }
+}
+
+async function purchaseItem(productName, price) {
+    const { stock, sha } = await getStock();
+
+    if (stock[productName] > 0) {
+        await updateStock(productName, sha); // Reduce stock for this product
+
+        // Redirect to PayPal with correct product name and price
+        window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price}&currency_code=USD`;
+    } else {
+        alert("Out of Stock, check back for availability.");
+    }
+}
+
+// Show "In Stock" or "Out of Stock" for each product
+document.addEventListener("DOMContentLoaded", async () => {
+    const { stock } = await getStock();
+
+    document.querySelectorAll(".product-card").forEach(card => {
+        const productName = card.getAttribute("data-product-name");
+        const stockStatusDiv = card.querySelector(".stock-status");
+
+        if (stock[productName] > 0) {
+            stockStatusDiv.innerHTML = `<p style="color: green; font-weight: bold;">In Stock – Ready to Build</p>`;
+        } else {
+            stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
+        }
+    });
+});
