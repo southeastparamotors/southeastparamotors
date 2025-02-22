@@ -47,15 +47,17 @@ async function purchaseItem(productName, price) {
 async function updateStock(productName) {
     console.log(`🔥 Updating stock for ${productName}...`);
 
+    const GITHUB_REPO = "southeastparamotors/southeastparamotors"; // 🔹 Add this inside the function
+
     const { stock, sha } = await getStock();
 
     if (stock[productName] > 0) {
         stock[productName] -= 1;  // Reduce stock for the selected product
 
-        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${FILE_PATH}`, {
+        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/stock.json`, {
             method: "PUT",
             headers: {
-                Authorization: `token ${TOKEN}`,
+                Authorization: `Bearer ${TOKEN}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -70,10 +72,9 @@ async function updateStock(productName) {
         } else {
             console.error("❌ Failed to update stock:", response);
         }
-    } else {
-        console.warn(`⚠️ Stock for ${productName} is already at 0.`);
     }
 }
+
 
 // ✅ Make `updateStock` globally available for testing
 window.updateStock = updateStock;
