@@ -1,33 +1,30 @@
-name: Update Stock After Purchase
+name: Update Stock on Purchase
 
 on:
   repository_dispatch:
     types: [purchase_made]
 
 jobs:
-  update-stock:
+  update_stock:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      - name: Decrease Stock
-        run: |
-          PRODUCT_NAME="${{ github.event.client_payload.product }}"
-          STOCK_FILE="stock.json"
+    - name: Update Stock Data
+      run: |
+        echo "Updating stock..."
+        PRODUCT_FILE="stock.json"
+        STOCK=$(jq '.products["Paramotor LED Kit"].stock -= 1' $PRODUCT_FILE)
+        echo "$STOCK" > $PRODUCT_FILE
 
-          # Reduce stock count
-          jq --arg product "$PRODUCT_NAME" '
-            if has($product) then 
-              .[$product] -= 1 | if .[$product] < 0 then .[$product] = 0 else .[$product] end 
-            else . end
-          ' "$STOCK_FILE" > temp.json && mv temp.json "$STOCK_FILE"
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add stock.json
-          git commit -m "Updated stock after purchase: $PRODUCT_NAME" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/southeastparamotors/southeastparamotors.git
+    - name: Commit and Push Changes
+      env:
+        MY_TOKEN: ${{ secrets.MY_TOKEN }}  # ✅ Use your custom secret name
+      run: |
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git add stock.json
+        git commit -m "Updated stock after purchase"
+        git push https://x-access-token:${{ secrets.MY_TOKEN }}@github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git
