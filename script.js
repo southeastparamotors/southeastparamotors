@@ -54,7 +54,7 @@ async function updateStock(productName, sha) {
  * Handles product purchase.
  */
 async function purchaseItem(productName, price) {
-    console.log(`Purchasing: ${productName} for $${price}`); // Debugging Log
+    console.log(`🔍 Debug: Purchasing ${productName} for $${price}`); // 🔹 Check if correct values are being passed
 
     const { stock, sha } = await getStock();
 
@@ -67,6 +67,7 @@ async function purchaseItem(productName, price) {
         alert("❌ Out of Stock, check back for availability.");
     }
 }
+
 
 /**
  * Updates stock display on page load.
