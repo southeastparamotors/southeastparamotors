@@ -113,7 +113,7 @@ body {
   margin-top: 50px; /* ⬅ Moves it BELOW the marble section */
   background-color: black; /* ⬅ Keeps it inside the black middle section */
   width: 100%;
-  min-height: 400px; /* ⬅ Ensures content stays properly positioned */
+  min-height: 500px; /* ⬅ Ensures full scrolling */
 }
 
 
