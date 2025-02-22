@@ -103,15 +103,19 @@ body {
   }
 }
 
-/* 🔹 Products Page Layout */
+/* 🔹 Products Page Layout - Now Correctly Positioned */
 .products-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px; /* ⬅ This keeps space below the marble section */
-  margin-top: 50px; /* ⬅ Moves the section down */
-  background-color: black; /* ⬅ Ensures background matches the middle black section */
+  justify-content: center;
+  padding: 40px 20px;
+  margin-top: 50px; /* ⬅ Moves it BELOW the marble section */
+  background-color: black; /* ⬅ Keeps it inside the black middle section */
+  width: 100%;
+  min-height: 400px; /* ⬅ Ensures content stays properly positioned */
 }
+
 
 /* 🔹 Individual Product Card */
 .product-card {
