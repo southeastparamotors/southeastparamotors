@@ -8,47 +8,30 @@
 </head>
 <body>
 
-   <!-- 🔹 Navigation Tabs (Evenly Spaced!) -->
+  <!-- 🔹 Navigation Tabs (Evenly Spaced!) -->
   <div class="nav-links">
     <a href="index.html" class="nav-item">Home</a>
     <a href="products.html" class="nav-item">Products</a>
     <a href="installation.html" class="nav-item">Installation</a>
   </div>
-</div>
-  
- <!-- 🔹 Top Marble Section -->
-<div class="marble-section">
-  <div class="marble-content">
-    <h1>Welcome to Southeast Paramotors</h1>
-    <p>Paramotor equipment at an affordable price</p>
-  </div>
 
-   /* 🔹 Products Page Layout - Now Correctly Positioned */
-.products-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  margin-top: 50px; /* ⬅ Moves it BELOW the marble section */
-  background-color: black; /* ⬅ Keeps it inside the black middle section */
-  width: 100%;
-  min-height: 400px; /* ⬅ Ensures content stays properly positioned */
-}
+  <!-- 🔹 Top Marble Section -->
+  <div class="marble-section">
+    <div class="marble-content">
+      <h1>Welcome to Southeast Paramotors</h1>
+      <p>Paramotor equipment at an affordable price</p>
+    </div>
+  </div> <!-- ⬅ Make sure marble section closes before products start -->
 
-    <!-- Product 1 -->
+  <!-- 🔹 Products Section (Now properly below marble section) -->
+  <section class="products-container">
     <div class="product-card">
       <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit" class="product-image">
       <p class="product-description">Enhance your flights with stunning LED effects.</p>
       <button class="buy-now" onclick="purchaseItem()">Buy Now</button>
     </div>
-    
-    <!-- ✅ More products can be added here in the same format -->
-  
   </section>
 
-
-  <!-- 🔹 Buy Now Script -->
   <script>
     function purchaseItem() {
       window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=269.99&currency_code=USD';
