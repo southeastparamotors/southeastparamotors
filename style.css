@@ -122,16 +122,6 @@ footer {
   width: 100%;
 }
 
-/* 🔹 Navigation Header - Fixed at the Top */
-.nav-header {
-  width: 100%;
-  background: transparent;
-  padding: 15px 0;
-  display: flex;
-  justify-content: center;
-  height: 60px; /* Keeps height consistent */
-}
-
 
 /* 🔹 Spread Out Navigation Links */
 .nav-links {
