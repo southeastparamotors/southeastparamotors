@@ -25,11 +25,19 @@
 
   <!-- 🔹 Products Section (Now properly below marble section) -->
   <section class="products-container">
-    <div class="product-card">
-      <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit" class="product-image">
-      <p class="product-description">Enhance your flights with stunning LED effects.</p>
-      <button class="buy-now" onclick="purchaseItem()">Buy Now</button>
-    </div>
+    <!-- ✅ Product 1: Paramotor LED Kit -->
+  <div class="product-card">
+    <img src="assets/paramotor-kit.jpg" alt="Paramotor LED Kit" class="product-image">
+    <p class="product-description">Enhance your flights with stunning LED effects.</p>
+    <button class="buy-now" onclick="purchaseItem('Paramotor LED Kit', 269.99)">Buy Now</button>
+  </div>
+
+  <!-- ✅ Product 2: Battery Pack (Newly Added) -->
+  <div class="product-card">
+    <img src="assets/battery.jpg" alt="Paramotor Battery Pack" class="product-image">
+    <p class="product-description">6.5Ah Li-ion battery Replacement.</p>
+    <button class="buy-now" onclick="purchaseItem('Battery Pack', 89.99)">Buy Now</button>
+  </div>
   </section>
 
   <script>
