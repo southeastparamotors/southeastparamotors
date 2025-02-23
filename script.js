@@ -70,10 +70,6 @@ async function updateStock(productName) {
     }
 }
 
-// Make `updateStock` available for testing in the browser console
-window.updateStock = updateStock;
-
-
 
 // ✅ Updates stock display on page load
 document.addEventListener("DOMContentLoaded", async () => {
@@ -90,4 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 });
+
+window.updateStock = updateStock;
+console.log("✅ updateStock is now available globally!");
 
