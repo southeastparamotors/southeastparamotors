@@ -48,21 +48,25 @@ async function purchaseItem(productName, price) {
 async function updateStock(productName) {
     console.log(`🔥 Requesting stock update for ${productName}...`);
 
-    const GITHUB_REPO = "southeastparamotors/southeastparamotors";
-    const WORKFLOW_PATH = "update-stock.yml"; // Make sure this matches your workflow file
-
     const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${WORKFLOW_PATH}/dispatches`, {
         method: "POST",
         headers: {
             "Accept": "application/vnd.github.v3+json",
-           "Authorization": `Bearer ${process.env.MY_TOKEN}`
-  // Uses your GitHub Secret
+            "Authorization": `Bearer ${MY_TOKEN}`
         },
         body: JSON.stringify({
-            ref: "main", // Adjust to "master" if needed
+            ref: "main",
             inputs: { product: productName }
         })
     });
+
+    if (response.ok) {
+        console.log(`✅ Stock update request sent for ${productName}`);
+    } else {
+        console.error("❌ Failed to trigger GitHub Actions:", await response.text());
+    }
+}
+
 
     if (response.ok) {
         console.log(`✅ Stock update request sent for ${productName}`);
