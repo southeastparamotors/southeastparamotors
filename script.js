@@ -1,4 +1,3 @@
-console.log("✅ script.js is loaded and running!");
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";
 const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
 
@@ -87,8 +86,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    // ✅ Ensure updateStock is available globally AFTER it's defined
-    window.updateStock = updateStock;
-    console.log("✅ updateStock is now available globally!");
-});
+window.updateStock = function(productName) {
+    console.log(`🔥 updateStock is now working for ${productName}!`);
+};
+console.log(typeof updateStock);
 
