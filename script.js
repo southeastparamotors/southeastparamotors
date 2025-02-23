@@ -5,12 +5,10 @@ const MY_TOKEN = "github_pat_11BO3O6EY0t5uuKFpF8opl_crbX66q6QZUkJZsSGlQTvO4IEThZ
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
     try {
-        const response = await fetch("https://southeastparamotors.com/stock.json");  
-
+        const response = await fetch("https://southeastparamotors.com/stock.json");
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
         const stockData = await response.json();
         console.log("✅ Stock loaded:", stockData);
         return { stock: stockData };
@@ -42,9 +40,7 @@ async function purchaseItem(productName, price) {
     }
 }
 
-/**
- * Triggers GitHub Actions to update stock.
- */
+// ✅ Triggers GitHub Actions to update stock.
 async function updateStock(productName) {
     console.log(`🔥 Requesting stock update for ${productName}...`);
 
@@ -67,15 +63,6 @@ async function updateStock(productName) {
     }
 }
 
-
-    if (response.ok) {
-        console.log(`✅ Stock update request sent for ${productName}`);
-    } else {
-        console.error("❌ Failed to trigger GitHub Actions:", await response.text());
-    }
-}
-
-
 // ✅ Updates stock display on page load
 document.addEventListener("DOMContentLoaded", async () => {
     const { stock } = await getStock();
@@ -91,18 +78,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-window.updateStock = function(productName) {
-    console.log(`🔥 updateStock is now working for ${productName}!`);
-};
-console.log(typeof updateStock);
+    // Expose functions to the global scope for inline event handlers.
+    window.purchaseItem = purchaseItem;
+    window.updateStock = updateStock;
 
-// Your existing function definitions…
-async function purchaseItem(productName, price) {
-    console.log("🔥 Click detected for:", productName, "with price:", price);
-    // ...rest of your code
-}
-
-// Other functions here...
-
-// At the end of your script:
-window.purchaseItem = purchaseItem;
+    console.log("purchaseItem type:", typeof purchaseItem);
+});
