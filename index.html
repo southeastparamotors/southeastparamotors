@@ -203,40 +203,52 @@
   <div id="stock-status"></div>
 
   <script>
-    let availableStock = 2; // Change this number to add more stock
-
+    // Global variable for available stock
+    let availableStock;
+    
+    // Function to update the stock display on your page
+    function updateStockDisplay() {
+      const stockStatusDiv = document.getElementById("stock-status");
+      if (availableStock > 0) {
+        stockStatusDiv.innerHTML = `
+          <p style="color: green; font-weight: bold;">In Stock – Ready to Build</p>
+          <div class="paramotor-button" onclick="purchaseItem()">
+            <div class="hoop"></div>
+            <div class="propeller"></div>
+            <div class="text">
+              <span style="font-size: 16px; font-weight: bold;">Click Here</span>
+              <span style="font-size: 14px;">Buy Now</span>
+            </div>
+          </div>
+        `;
+      } else {
+        stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
+      }
+    }
+    
+    // Function to process a purchase
     function purchaseItem() {
       if (availableStock > 0) {
         availableStock--; // Reduce stock when purchased
-        localStorage.setItem("paramotorStock", availableStock); // Save stock level
-
+        localStorage.setItem("paramotorStock", availableStock); // Save updated stock level
+        updateStockDisplay();
+        
         // Redirect to PayPal for purchase
-       window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=269.99&currency_code=USD';
+        window.location.href = 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=Paramotor+LED+Kit&amount=269.99&currency_code=USD';
       }
     }
-
-    // Load stock from storage (persists across page refreshes)
-    if (localStorage.getItem("paramotorStock") !== null) {
-      availableStock = parseInt(localStorage.getItem("paramotorStock"), 10);
-    }
-
-    const stockStatusDiv = document.getElementById("stock-status");
-
-    if (availableStock > 0) {
-      stockStatusDiv.innerHTML = `
-        <p style="color: green; font-weight: bold;">In Stock – Ready to Build</p>
-        <div class="paramotor-button" onclick="purchaseItem()">
-          <div class="hoop"></div>
-          <div class="propeller"></div>
-          <div class="text">
-            <span style="font-size: 16px; font-weight: bold;">Click Here</span>
-            <span style="font-size: 14px;">Buy Now</span>
-          </div>
-        </div>
-      `;
-    } else {
-      stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
-    }
+    
+    // Always fetch the current stock from your JSON file on page load
+    fetch('stock.json')  // Change this path if your JSON file is in a different folder
+      .then(response => response.json())
+      .then(data => {
+        // Use the "paramotor_kit" value from your JSON file as the available stock
+        availableStock = data.paramotor_kit;
+        // Update localStorage with the fresh value to ensure consistency
+        localStorage.setItem("paramotorStock", availableStock);
+        updateStockDisplay();
+      })
+      .catch(error => console.error('Error fetching stock data:', error));
   </script>
 </section>
 
