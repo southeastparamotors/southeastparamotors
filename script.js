@@ -32,6 +32,14 @@ async function purchaseItem(productName, price) {
     if (stock[productName] > 0) {
         console.log(`✅ Stock available for ${productName}: ${stock[productName]}`);
 
+         // Call updateStock to update the stock file via GitHub Actions
+        try {
+            await updateStock(productName);
+            console.log("✅ Stock updated successfully.");
+        } catch (error) {
+            console.error("❌ Stock update failed:", error);
+        }
+        
         // ✅ Redirect to PayPal with correct product name and price
         console.log("✅ Redirecting to PayPal:", productName, price);
         window.location.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jack3laynee@yahoo.com&item_name=${encodeURIComponent(productName)}&amount=${price.toFixed(2)}&currency_code=USD`;
