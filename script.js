@@ -85,8 +85,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             stockStatusDiv.innerHTML = `<p style="color: red; font-weight: bold;">Out of Stock, check back for availability.</p>`;
         }
     });
-});
 
-window.updateStock = updateStock;
-console.log("✅ updateStock is now available globally!");
+    // ✅ Ensure updateStock is available globally AFTER it's defined
+    window.updateStock = updateStock;
+    console.log("✅ updateStock is now available globally!");
+});
 
