@@ -43,42 +43,36 @@ async function purchaseItem(productName, price) {
 }
 
 /**
- * Updates stock count on GitHub after purchase.
+ * Triggers GitHub Actions to update stock.
  */
 async function updateStock(productName) {
-    console.log(`🔥 Updating stock for ${productName}...`);
+    console.log(`🔥 Requesting stock update for ${productName}...`);
 
-    const GITHUB_REPO = "southeastparamotors/southeastparamotors"; // 🔹 Add this inside the function
+    const GITHUB_REPO = "southeastparamotors/southeastparamotors";
+    const WORKFLOW_PATH = "update-stock.yml"; // Make sure this matches your workflow file
 
-    const { stock, sha } = await getStock();
+    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${WORKFLOW_PATH}/dispatches`, {
+        method: "POST",
+        headers: {
+            "Accept": "application/vnd.github.v3+json",
+            "Authorization": `Bearer ${MY_TOKEN}`,  // Uses your GitHub Secret
+        },
+        body: JSON.stringify({
+            ref: "main", // Adjust to "master" if needed
+            inputs: { product: productName }
+        })
+    });
 
-    if (stock[productName] > 0) {
-        stock[productName] -= 1;  // Reduce stock for the selected product
-
-        const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/stock.json`, {
-            method: "PUT",
-            headers: {
-                Authorization: `Bearer ${TOKEN}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: `Updated stock for ${productName}`,
-                content: btoa(JSON.stringify(stock)),  // Encode updated JSON to base64
-                sha: sha
-            })
-        });
-
-        if (response.ok) {
-            console.log(`✅ Stock updated for ${productName}`);
-        } else {
-            console.error("❌ Failed to update stock:", response);
-        }
+    if (response.ok) {
+        console.log(`✅ Stock update request sent for ${productName}`);
+    } else {
+        console.error("❌ Failed to trigger GitHub Actions:", await response.text());
     }
 }
 
-
-// ✅ Make `updateStock` globally available for testing
+// Make `updateStock` available for testing in the browser console
 window.updateStock = updateStock;
+
 
 
 // ✅ Updates stock display on page load
