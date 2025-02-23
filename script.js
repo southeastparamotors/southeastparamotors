@@ -61,7 +61,8 @@ async function updateStock(productName) {
         body: JSON.stringify({
             ref: "main",
             inputs: { product: productName }
-        })
+        }),
+        keepalive: true  // This helps the request complete even if the page unloads 
     });
 
     if (response.ok) {
