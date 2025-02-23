@@ -96,3 +96,13 @@ window.updateStock = function(productName) {
 };
 console.log(typeof updateStock);
 
+// Your existing function definitions…
+async function purchaseItem(productName, price) {
+    console.log("🔥 Click detected for:", productName, "with price:", price);
+    // ...rest of your code
+}
+
+// Other functions here...
+
+// At the end of your script:
+window.purchaseItem = purchaseItem;
