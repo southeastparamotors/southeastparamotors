@@ -1,12 +1,7 @@
 name: Update Stock
-
 on:
-  workflow_dispatch:
-    inputs:
-      product:
-        description: "Product to update stock"
-        required: true
-        type: string
+  repository_dispatch:
+    types: [update-stock]
 
 jobs:
   update-stock:
@@ -15,34 +10,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Read and Update Stock
+      - name: Load Stock Data
+        id: load-stock
         run: |
+          PRODUCT="${{ github.event.client_payload.product }}"
           STOCK_FILE="stock.json"
-          if [[ -f "$STOCK_FILE" ]]; then
-            STOCK=$(cat "$STOCK_FILE" | jq -r ".${{ github.event.inputs.product }}")
-          else
-            echo "Stock file not found!"
-            exit 1
-          fi
-          echo "Current stock: $STOCK"
-          if (( STOCK > 0 )); then
-            echo "NEW_STOCK=$(( STOCK - 1 ))" >> $GITHUB_ENV
-          else
-            echo "NEW_STOCK=0" >> $GITHUB_ENV
-          fi
 
-      - name: Update Stock File
-        run: |
-          STOCK_FILE="stock.json"
-          jq ".${{ github.event.inputs.product }} |= $NEW_STOCK" "$STOCK_FILE" > tmp.json && mv tmp.json "$STOCK_FILE"
-          cat "$STOCK_FILE"
+          # Read stock.json and update stock
+          STOCK=$(jq --arg product "$PRODUCT" '.[$product] -= 1' "$STOCK_FILE")
 
-      - name: Commit and Push Changes
+          # Save updated stock
+          echo "$STOCK" > "$STOCK_FILE"
+
+      - name: Commit and Push Stock Update
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add stock.json
-          git commit -m "Updated stock for ${{ github.event.inputs.product }}"
+          git commit -m "Update stock for ${{ github.event.client_payload.product }}"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
