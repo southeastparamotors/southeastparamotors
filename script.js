@@ -55,7 +55,8 @@ async function updateStock(productName) {
         method: "POST",
         headers: {
             "Accept": "application/vnd.github.v3+json",
-            "Authorization": `Bearer ${MY_TOKEN}`,  // Uses your GitHub Secret
+           "Authorization": `Bearer ${process.env.MY_TOKEN}`
+  // Uses your GitHub Secret
         },
         body: JSON.stringify({
             ref: "main", // Adjust to "master" if needed
