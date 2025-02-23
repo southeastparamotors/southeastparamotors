@@ -1,5 +1,6 @@
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";
 const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
+const MY_TOKEN = "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"; // Replace with your GitHub token
 
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
