@@ -56,21 +56,25 @@ async function updateStock(productName) {
         method: "POST",
         headers: {
             "Accept": "application/vnd.github.v3+json",
-            "Authorization": `Bearer ${MY_TOKEN}`
+            "Authorization": `Bearer ${MY_TOKEN}`,
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             ref: "main",
             inputs: { product: productName }
         }),
-        keepalive: true  // This helps the request complete even if the page unloads 
+        keepalive: true
     });
 
+    const responseData = await response.text();
+    
     if (response.ok) {
         console.log(`✅ Stock update request sent for ${productName}`);
     } else {
-        console.error("❌ Failed to trigger GitHub Actions:", await response.text());
+        console.error("❌ Failed to trigger GitHub Actions:", responseData);
     }
 }
+
 
 // ✅ Updates stock display on page load
 document.addEventListener("DOMContentLoaded", async () => {
