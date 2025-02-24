@@ -1,7 +1,10 @@
 name: Update Stock
 on:
-  repository_dispatch:
-    types: [update-stock]
+  workflow_dispatch:
+    inputs:
+      product:
+        description: 'The product to update stock for'
+        required: true
 
 jobs:
   update-stock:
@@ -13,7 +16,7 @@ jobs:
       - name: Load Stock Data
         id: load-stock
         run: |
-          PRODUCT="${{ github.event.client_payload.product }}"
+          PRODUCT="${{ github.event.inputs.product }}"
           STOCK_FILE="stock.json"
 
           # Read stock.json and update stock
@@ -27,7 +30,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add stock.json
-          git commit -m "Update stock for ${{ github.event.client_payload.product }}"
+          git commit -m "Update stock for ${{ github.event.inputs.product }}"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
