@@ -1,6 +1,6 @@
 const GITHUB_REPO = "southeastparamotors/southeastparamotors";
 const WORKFLOW_PATH = "update-stock.yml";  // GitHub Actions workflow file
-const MY_TOKEN = "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"; // Replace with your GitHub token
+const MY_TOKEN = "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"; // Replace with your GitHub token
 
 // ✅ Fetch stock.json directly from your website (no GitHub API needed)
 async function getStock() {
